@@ -1,0 +1,1041 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conferência Mídia MNCS</title>
+
+<style>
+@font-face{
+    font-family:'Urbanist';
+    src:url('./Urbanist-VariableFont_wght.ttf') format('truetype');
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Urbanist',sans-serif;
+    background:#000;
+    color:white;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(0,229,255,.10), transparent 20%),
+      radial-gradient(circle at 80% 30%, rgba(255,77,157,.08), transparent 25%),
+      radial-gradient(circle at 50% 80%, rgba(255,138,0,.08), transparent 25%);
+    z-index:-2;
+}
+
+section{
+    padding:100px 8vw;
+    position:relative;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:50px 24px;
+}
+
+.hero-content{
+    max-width:1100px;
+}
+
+.logo{
+    width:min(760px,92vw);
+    margin:auto;
+    display:block;
+    margin-bottom:25px;
+}
+
+.badge{
+    display:inline-block;
+    padding:12px 22px;
+    border-radius:999px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    margin-bottom:35px;
+    font-size:.95rem;
+}
+
+h1{
+    font-size:clamp(2.5rem,5vw,5.4rem);
+    line-height:1.05;
+    margin-bottom:28px;
+}
+
+.gradient{
+    background:linear-gradient(90deg,#ff8a00,#ff4d9d,#7a3cff,#008bff,#00e5ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:900px;
+    margin:auto;
+    color:#cfcfcf;
+    line-height:1.9;
+    font-size:1.15rem;
+}
+
+.cta{
+    margin-top:45px;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:16px 28px;
+    border-radius:999px;
+    text-decoration:none;
+    color:white;
+    border:1px solid rgba(255,255,255,.15);
+    transition:.3s;
+    background:rgba(255,255,255,.03);
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+}
+
+.primary{
+    background:linear-gradient(90deg,#ff8a00,#ff4d9d,#008bff);
+    border:none;
+}
+
+.section-title{
+    font-size:clamp(2rem,4vw,4rem);
+    margin-bottom:20px;
+}
+
+.section-subtitle{
+    color:#bcbcbc;
+    line-height:1.9;
+    max-width:1000px;
+    margin-bottom:50px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:24px;
+}
+
+.card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:28px;
+    padding:32px;
+    backdrop-filter:blur(18px);
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(0,229,255,.35);
+}
+
+.card h3{
+    margin-bottom:14px;
+    font-size:1.4rem;
+}
+
+.card p{
+    color:#d0d0d0;
+    line-height:1.8;
+}
+
+.highlight{
+    margin-top:60px;
+    padding:2px;
+    border-radius:34px;
+    background:linear-gradient(90deg,#ff8a00,#ff4d9d,#008bff);
+}
+
+.highlight-inner{
+    background:#050505;
+    border-radius:32px;
+    padding:55px;
+}
+
+.timeline{
+    display:grid;
+    gap:26px;
+}
+
+.timeline-item{
+    background:rgba(255,255,255,.03);
+    border-left:4px solid #00e5ff;
+    padding:28px;
+    border-radius:24px;
+}
+
+.timeline-item h3{
+    margin-bottom:12px;
+}
+
+.timeline-item p{
+    color:#d0d0d0;
+    line-height:1.8;
+}
+
+.trilhas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:28px;
+    margin-top:50px;
+}
+
+.trilha{
+    border-radius:28px;
+    padding:35px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.trilha ul{
+    margin-top:20px;
+    padding-left:18px;
+    color:#d0d0d0;
+    line-height:2;
+}
+
+.workshop-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:24px;
+    margin-top:40px;
+}
+
+.workshop{
+    border-radius:28px;
+    padding:30px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.workshop h4{
+    font-size:1.2rem;
+    margin-bottom:12px;
+}
+
+.workshop .tema{
+    color:#8be9ff;
+    margin-bottom:18px;
+    font-weight:600;
+}
+
+.workshop ul{
+    padding-left:18px;
+    line-height:1.9;
+    color:#d0d0d0;
+}
+
+.center{
+    text-align:center;
+}
+
+footer{
+    padding:70px 20px;
+    text-align:center;
+    color:#888;
+}
+
+@media(max-width:768px){
+
+    section{
+        padding:80px 24px;
+    }
+
+    .highlight-inner{
+        padding:35px;
+    }
+
+    .hero p{
+        font-size:1rem;
+    }
+
+}
+
+.particles{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-1;
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:linear-gradient(45deg,#ff8a00,#ff4d9d,#008bff,#00e5ff);
+    opacity:.35;
+    animation:float 18s infinite linear;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh) scale(0);
+    }
+    to{
+        transform:translateY(-120vh) scale(1.4);
+    }
+}
+
+.fade-up{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
+}
+
+.fade-up.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card,
+.workshop,
+.timeline-item,
+.trilha{
+    transition:.45s ease;
+}
+
+.card:hover,
+.workshop:hover,
+.timeline-item:hover,
+.trilha:hover{
+    transform:translateY(-10px);
+    border-color:rgba(0,229,255,.35);
+    box-shadow:0 0 30px rgba(0,229,255,.08);
+}
+
+@media(max-width:1024px){
+
+    .workshop-grid,
+    .trilhas,
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .workshop-grid,
+    .trilhas,
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding-top:90px;
+        padding-bottom:90px;
+    }
+
+    h1{
+        line-height:1.15;
+    }
+
+    .badge{
+        font-size:.85rem;
+        padding:10px 18px;
+    }
+
+    .btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .cta{
+        width:100%;
+    }
+
+    .timeline-item,
+    .workshop,
+    .card,
+    .trilha{
+        padding:24px;
+    }
+
+    .section-subtitle{
+        font-size:.98rem;
+    }
+
+}
+
+
+
+.mncs-ring{
+    position:fixed;
+    width:320px;
+    opacity:.5;
+    pointer-events:none;
+    z-index:-1;
+    animation:spin 40s linear infinite;
+    filter:blur(.2px);
+}
+
+.mncs-ring img{
+    width:100%;
+    display:block;
+}
+
+.ring-1{top:8%;left:-90px;animation-duration:48s;}
+.ring-2{top:35%;right:-110px;width:260px;animation-duration:35s;animation-direction:reverse;}
+.ring-3{bottom:8%;left:5%;width:220px;animation-duration:52s;}
+.ring-4{bottom:18%;right:10%;width:180px;animation-duration:30s;animation-direction:reverse;}
+.ring-5{top:70%;left:40%;width:140px;animation-duration:60s;}
+
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+@media(max-width:768px){
+    .mncs-ring{
+        width:180px;
+        opacity:.35;
+    }
+
+    .ring-2{width:140px;}
+    .ring-3{width:120px;}
+    .ring-4{width:100px;}
+    .ring-5{display:none;}
+}
+
+
+.gallery-block{
+    margin-top:80px;
+}
+
+.gallery-title{
+    font-size:2rem;
+    margin-bottom:18px;
+}
+
+.gallery-description{
+    color:#cfcfcf;
+    line-height:1.9;
+    max-width:1000px;
+    margin:25px auto 0;
+}
+
+.image-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:24px;
+    margin-top:30px;
+}
+
+.image-grid.two{
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+}
+
+.image-grid.three{
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+}
+
+.image-grid img{
+    width:100%;
+    border-radius:28px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#111;
+    box-shadow:0 0 40px rgba(0,0,0,.35);
+    transition:.4s ease;
+}
+
+.image-grid img:hover{
+    transform:translateY(-8px) scale(1.01);
+    box-shadow:0 0 50px rgba(0,229,255,.15);
+}
+
+
+
+/* MENU */
+.floating-menu{
+    position:fixed;
+    top:24px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:9999;
+    backdrop-filter:blur(18px);
+    background:rgba(0,0,0,.55);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:999px;
+    padding:14px 20px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+    box-shadow:0 0 30px rgba(0,0,0,.25);
+}
+
+.floating-menu a{
+    color:white;
+    text-decoration:none;
+    font-size:.95rem;
+    opacity:.8;
+    transition:.3s;
+    position:relative;
+}
+
+.floating-menu a:hover{
+    opacity:1;
+    color:#00e5ff;
+}
+
+@media(max-width:768px){
+
+    .floating-menu{
+        width:92%;
+        border-radius:24px;
+        top:16px;
+        padding:14px;
+        gap:12px;
+    }
+
+    .floating-menu a{
+        font-size:.82rem;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="floating-menu">
+    <a href="#inicio">Início</a>
+    <a href="#trilhas">Trilhas</a>
+    <a href="#cronograma">Cronograma</a>
+    <a href="#identidade-visual">Identidade</a>
+    <a href="#treinamento">Treinamento</a>
+</nav>
+
+<div class='particles'></div>
+
+<div class="mncs-ring ring-1"><img src="./Ativo 6.png" alt=""></div>
+<div class="mncs-ring ring-2"><img src="./Ativo 6.png" alt=""></div>
+<div class="mncs-ring ring-3"><img src="./Ativo 6.png" alt=""></div>
+<div class="mncs-ring ring-4"><img src="./Ativo 6.png" alt=""></div>
+<div class="mncs-ring ring-5"><img src="./Ativo 6.png" alt=""></div>
+
+
+
+<section class="hero" id="inicio">
+    <div class="hero-content">
+
+        <img src="./Ativo 2.png" class="logo">
+
+        <div class="badge">28 de Maio de 2027 • Rio de Janeiro</div>
+
+        <h1>
+            Comunicação que <span class="gradient">influencia</span>.<br>
+            Cultura que transforma.
+        </h1>
+
+        <p>
+            A Conferência Mídia MNCS nasce com uma proposta diferente:
+            não queremos apenas ensinar técnica.
+            Queremos desenvolver pessoas, fortalecer cultura,
+            construir equipes saudáveis e mostrar que comunicação dentro da igreja
+            vai muito além de câmera, design ou redes sociais.
+            Cada detalhe foi pensado para gerar conexão, excelência e visão.
+        </p>
+
+        <div class="cta">
+            <a href="#cronograma" class="btn primary">Ver programação</a>
+            <a href="#trilhas" class="btn">Conhecer as trilhas</a>
+        </div>
+
+    </div>
+</section>
+
+<section>
+
+    <h2 class="section-title gradient">Muito além de uma conferência técnica.</h2>
+
+    <p class="section-subtitle">
+        A ideia da Conferência Mídia MNCS é criar um ambiente onde equipes possam crescer juntas.
+        Hoje, muitas igrejas possuem equipes extremamente talentosas,
+        mas poucas recebem direcionamento sobre cultura, liderança saudável,
+        organização e propósito.
+        Por isso, a conferência foi construída para unir visão espiritual,
+        excelência prática e desenvolvimento humano.
+        O objetivo não é apenas ensinar ferramentas —
+        é ensinar como construir equipes fortes, saudáveis e alinhadas com a visão da igreja.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Uma experiência única</h3>
+            <p>
+                Desde o credenciamento até o encerramento,
+                tudo foi pensado para que as pessoas sintam que fazem parte de algo maior.
+                Não queremos salas isoladas.
+                Queremos uma experiência coletiva.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Conexão entre equipes</h3>
+            <p>
+                Redes sociais, design, live, áudio e gravação trabalham juntos.
+                Por isso, a conferência cria momentos de integração constante
+                para gerar relacionamento entre áreas diferentes.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Cultura saudável</h3>
+            <p>
+                Um dos maiores focos da conferência é ensinar excelência sem pressão tóxica.
+                Queremos fortalecer líderes, levantar voluntários
+                e criar equipes saudáveis e sustentáveis.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="trilhas">
+
+    <h2 class="section-title">Divisão por Trilhas</h2>
+
+    <p class="section-subtitle">
+        A conferência será dividida em trilhas estratégicas.
+        Isso permite que cada participante aprofunde seus conhecimentos na área em que atua,
+        sem perder a sensação de estar vivendo uma única conferência.
+        Todos começam juntos, vivem momentos gerais juntos,
+        se dividem para os workshops e depois retornam para os momentos principais.
+        Isso cria conexão, organização e uma experiência muito mais dinâmica.
+    </p>
+
+    <div class="trilhas">
+
+        <div class="trilha">
+            <h3 class="gradient">Trilha Comunicação</h3>
+
+            <ul>
+                <li>Redes Sociais</li>
+                <li>Planejamento de conteúdo</li>
+                <li>Posicionamento ministerial</li>
+                <li>Design para igreja</li>
+                <li>Identidade visual</li>
+                <li>Telão e comunicação visual</li>
+            </ul>
+        </div>
+
+        <div class="trilha">
+            <h3 class="gradient">Trilha Audiovisual</h3>
+
+            <ul>
+                <li>Live e transmissão</li>
+                <li>Direção de câmera</li>
+                <li>Captação de vídeo</li>
+                <li>Edição de reels</li>
+                <li>Storytelling</li>
+                <li>Bastidores de produção</li>
+            </ul>
+        </div>
+
+        <div class="trilha">
+            <h3 class="gradient">Trilha Técnica</h3>
+
+            <ul>
+                <li>Áudio e som</li>
+                <li>Mixagem</li>
+                <li>Organização técnica</li>
+                <li>Preparação de culto</li>
+                <li>Dinâmica entre equipes</li>
+                <li>Excelência operacional</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="cronograma">
+
+    <h2 class="section-title gradient">Cronograma Completo</h2>
+
+    <p class="section-subtitle">
+        A programação foi estruturada para criar uma progressão natural:
+        primeiro alinhamos visão e cultura,
+        depois aprofundamos a parte técnica
+        e por fim mostramos tudo funcionando na prática,
+        dentro da rotina real da igreja.
+    </p>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <h3 class="gradient">SEXTA • VISÃO + CULTURA</h3>
+
+            <p>
+                A sexta-feira é totalmente focada em propósito, influência,
+                cultura e alinhamento espiritual das equipes.
+                Antes de ensinar técnica, queremos alinhar coração e visão.
+            </p>
+
+            <br>
+
+            <p>
+                19h00 • Credenciamento + recepção<br>
+                19h30 • Abertura da conferência<br>
+                19h45 • Louvor<br>
+                20h15 • Palavra principal — “Mídia e influência no Reino”<br>
+                21h15 • Apresentação das trilhas e conexão entre equipes<br>
+                21h45 • Encerramento
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3 class="gradient">SÁBADO • WORKSHOPS + PRÁTICA</h3>
+
+            <p>
+                O sábado será o dia mais intenso da conferência.
+                Workshops divididos por trilhas,
+                conteúdos fundamentais e módulos avançados,
+                tudo pensado de forma extremamente prática.
+            </p>
+
+            <br>
+
+            <p>
+                08h30 • Café + recepção<br>
+                09h00 • Devocional geral<br>
+                09h40 • Workshops — Bloco Fundamentos<br>
+                11h20 • Workshops — Bloco Avançado<br>
+                12h30 • Almoço<br>
+                14h00 • Painel geral sobre liderança e voluntariado<br>
+                15h20 • Workshops finais + demonstrações práticas<br>
+                16h40 • Encerramento geral
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3 class="gradient">DOMINGO • EXPERIÊNCIA REAL</h3>
+
+            <p>
+                O domingo será totalmente voltado para bastidores reais.
+                Os participantes poderão acompanhar as equipes funcionando ao vivo,
+                observando dinâmica, comunicação e operação durante o culto.
+            </p>
+
+            <br>
+
+            <p>
+                • Bastidores da live<br>
+                • Sala de áudio<br>
+                • Direção e operação<br>
+                • Social media em tempo real<br>
+                • Captação de vídeo<br>
+                • Pergunte qualquer coisa com líderes das equipes
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2 class="section-title">Workshops da Conferência</h2>
+
+    <p class="section-subtitle">
+        Os workshops foram desenhados para unir fundamentos e prática.
+        A ideia é que tanto iniciantes quanto pessoas mais experientes
+        consigam sair com ferramentas aplicáveis imediatamente.
+    </p>
+
+    <div class="workshop-grid">
+
+        <div class="workshop">
+            <h4>Redes Sociais</h4>
+            <div class="tema">Comunicando a visão da igreja nas redes</div>
+
+            <ul>
+                <li>Posicionamento da igreja</li>
+                <li>Organização de conteúdo</li>
+                <li>Reels que conectam</li>
+                <li>Cobertura de eventos</li>
+                <li>Planejamento estratégico</li>
+            </ul>
+        </div>
+
+        <div class="workshop">
+            <h4>Design + Telão</h4>
+            <div class="tema">Design que comunica e não distrai</div>
+
+            <ul>
+                <li>Hierarquia visual</li>
+                <li>Identidade ministerial</li>
+                <li>Legibilidade no telão</li>
+                <li>Templates e padronização</li>
+                <li>Antes e depois de artes reais</li>
+            </ul>
+        </div>
+
+        <div class="workshop">
+            <h4>Live</h4>
+            <div class="tema">Transformando transmissão em experiência</div>
+
+            <ul>
+                <li>Direção de câmera</li>
+                <li>Comunicação entre equipe</li>
+                <li>Cortes estratégicos</li>
+                <li>Operação prática</li>
+                <li>Organização da transmissão</li>
+            </ul>
+        </div>
+
+        <div class="workshop">
+            <h4>Áudio + Som</h4>
+            <div class="tema">Som excelente sem complicação</div>
+
+            <ul>
+                <li>Fundamentos do áudio</li>
+                <li>Equalização</li>
+                <li>Microfonia</li>
+                <li>Preparação do culto</li>
+                <li>Dinâmica com músicos</li>
+            </ul>
+        </div>
+
+        <div class="workshop">
+            <h4>Gravação + Edição</h4>
+            <div class="tema">Captação que conta histórias</div>
+
+            <ul>
+                <li>Storytelling</li>
+                <li>Enquadramentos</li>
+                <li>Iluminação básica</li>
+                <li>Edição de reels</li>
+                <li>Vídeos que geram conexão</li>
+            </ul>
+        </div>
+
+        <div class="workshop">
+            <h4>Painel Geral</h4>
+            <div class="tema">Como construir equipes saudáveis e excelentes</div>
+
+            <ul>
+                <li>Como levantar voluntários</li>
+                <li>Feedback saudável</li>
+                <li>Organização de escala</li>
+                <li>Excelência sem pressão tóxica</li>
+                <li>Cultura e pertencimento</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="highlight">
+        <div class="highlight-inner center">
+
+            <h2 class="section-title gradient">
+                Tudo foi pensado intencionalmente.
+            </h2>
+
+            <p class="section-subtitle" style="margin:auto;">
+                A data da conferência, a divisão das trilhas,
+                os momentos coletivos, os workshops práticos,
+                o domingo de experiência real e até o treinamento interno anterior:
+                tudo foi desenhado para criar algo sustentável,
+                saudável e realmente transformador para equipes de mídia da igreja.
+            </p>
+
+        </div>
+    </div>
+
+</section>
+
+
+
+
+<section id="identidade-visual">
+
+    <h2 class="section-title gradient">Identidade Visual da Conferência</h2>
+
+    <p class="section-subtitle">
+        A identidade da Conferência Mídia MNCS foi construída para transmitir inovação,
+        criatividade e movimento. Escolhemos uma paleta neon com tons vibrantes de azul,
+        rosa, roxo, verde e laranja para gerar uma sensação de tecnologia,
+        comunicação moderna e inovação constante.
+        Além disso, essas cores também conversam diretamente com a estética visual
+        do nosso projeto de expansão, criando unidade entre visão, ambiente e experiência.
+        O contraste entre o preto e os degradês reforça a ideia de impacto,
+        excelência visual e um ambiente contemporâneo.
+    </p>
+
+    <div class="gallery-block">
+        <h3 class="gallery-title">Crachás Oficiais</h3>
+        <p class="gallery-description">
+            Os crachás foram pensados para criar pertencimento e identificação visual
+            entre os participantes, equipe e pastores, mantendo uma linguagem moderna,
+            sofisticada e altamente reconhecível durante toda a conferência.
+        </p>
+
+        <div class="image-grid three">
+            <img src="./ChatGPT Image 26 de mai. de 2026, 13_53_51.png" alt="Crachá participante">
+            <img src="./ChatGPT Image 26 de mai. de 2026, 14_34_01.png" alt="Crachá pastor">
+            <img src="./ChatGPT Image 26 de mai. de 2026, 14_35_47.png" alt="Crachá equipe">
+        </div>
+    </div>
+
+    <div class="gallery-block">
+        <h3 class="gallery-title">Espaço Instagramável</h3>
+
+        <div class="image-grid">
+            <img src="./ChatGPT Image 26 de mai. de 2026, 14_12_05.png" alt="Espaço instagramável">
+        </div>
+
+        <p class="gallery-description">
+            O espaço instagramável foi criado para gerar experiência, interação e conexão.
+            Elementos luminosos, linhas neon e formas orgânicas reforçam a proposta da conferência:
+            comunicar, influenciar e transformar através da criatividade.
+        </p>
+    </div>
+
+    <div class="gallery-block">
+        <h3 class="gallery-title">Sinalização e Ambientação</h3>
+
+        <div class="image-grid two">
+            <img src="./ChatGPT Image 26 de mai. de 2026, 14_33_37.png" alt="Totens de sinalização">
+            <img src="./ChatGPT Image 26 de mai. de 2026, 14_25_39.png" alt="Flags de ambientação">
+        </div>
+
+        <p class="gallery-description">
+            Toda a sinalização foi desenhada para unir funcionalidade e identidade visual.
+            Os elementos ajudam no direcionamento do público enquanto fortalecem
+            a percepção de marca em cada ambiente da conferência.
+        </p>
+    </div>
+
+    <div class="gallery-block">
+        <h3 class="gallery-title">Telão e Experiência de Palco</h3>
+
+        <div class="image-grid">
+            <img src="./ChatGPT Image 26 de mai. de 2026, 14_37_00.png" alt="Telão principal">
+        </div>
+
+        <p class="gallery-description">
+            O conceito do palco utiliza uma composição minimalista e tecnológica,
+            explorando respiro visual, iluminação e elementos gráficos modernos
+            para criar uma experiência imersiva durante as ministrações e momentos principais.
+        </p>
+    </div>
+
+</section>
+
+
+
+
+
+<section id="treinamento">
+
+    <h2 class="section-title">Treinamento Interno • 27 de Novembro de 2026</h2>
+
+    <p class="section-subtitle">
+        Antes da conferência oficial, queremos iniciar esse movimento dentro da nossa própria igreja.
+        O treinamento interno será o primeiro passo para fortalecer cultura,
+        alinhar processos, desenvolver líderes e preparar nossa equipe para receber
+        a conferência com excelência.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Capacitação</h3>
+            <p>
+                Desenvolver técnica, organização e excelência prática dentro das equipes.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Cultura</h3>
+            <p>
+                Construir uma equipe saudável, alinhada e fortalecida espiritualmente.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Preparação</h3>
+            <p>
+                Estruturar processos e preparar a igreja para viver a conferência da melhor forma possível.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    Conferência Mídia MNCS • Comunicar • Influenciar • Transformar
+</footer>
+
+
+<script>
+
+const particles = document.querySelector('.particles');
+
+for(let i=0;i<55;i++){
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.animationDuration = (10 + Math.random() * 18) + 's';
+    particle.style.animationDelay = Math.random() * 8 + 's';
+    particle.style.width = particle.style.height = (2 + Math.random() * 5) + 'px';
+
+    particles.appendChild(particle);
+}
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+},{
+    threshold:0.15
+});
+
+document.querySelectorAll(
+'.card, .timeline-item, .workshop, .trilha, .highlight-inner, .section-title, .section-subtitle'
+).forEach(el=>{
+    el.classList.add('fade-up');
+    observer.observe(el);
+});
+
+</script>
+
+</body>
+</html>
